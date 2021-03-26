@@ -1,6 +1,5 @@
 package com.chai.bigdata.spark.core.WordCount
 
-import com.esotericsoftware.kryo.Kryo
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{HashPartitioner, SparkConf, SparkContext}
 
@@ -11,8 +10,7 @@ object Spark01_WordCount {
         val sparkConf: SparkConf = new SparkConf().setMaster("local").setAppName("WordCount")
         val sc = new SparkContext(sparkConf)
 
-
-        val rdd = sc.textFile("data")
+        val rdd: RDD[String] = sc.textFile("data")
         println(rdd.dependencies)
         val words = rdd.flatMap(_.split(" "))
         println(words.dependencies)
